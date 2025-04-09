@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Raining Hearts for Princess Ice</title>
+<style>
+  body {
+    margin: 0;
+    overflow: hidden;
+    background-color: #f0f0f0; /* Light grey background */
+  }
+
+  .heart {
+    color: red;
+    font-size: 20px;
+    position: absolute;
+    animation: fall linear infinite;
+    user-select: none; /* Prevent text selection */
+  }
+
+  @keyframes fall {
+    0% {
+      transform: translateY(-100px) scale(1);
+      opacity: 1;
+    }
+    100% {
+      transform: translateY(100vh) scale(0.5);
+      opacity: 0;
+    }
+  }
+
+  #princess-ice {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 48px;
+    font-family: sans-serif;
+    white-space: nowrap; /* Prevent wrapping */
+  }
+
+  .char {
+    display: inline-block;
+    animation: rainbow-text 2s linear infinite alternate;
+  }
+
+  @keyframes rainbow-text {
+    0% { color: red; }
+    14% { color: orange; }
+    28% { color: yellow; }
+    42% { color: green; }
+    57% { color: blue; }
+    71% { color: indigo; }
+    85% { color: violet; }
+    100% { color: red; }
+  }
+</style>
+</head>
+<body>
+
+<div id="princess-ice">
+  <span class="char" style="animation-delay: 0s;">P</span>
+  <span class="char" style="animation-delay: 0.1s;">r</span>
+  <span class="char" style="animation-delay: 0.2s;">i</span>
+  <span class="char" style="animation-delay: 0.3s;">n</span>
+  <span class="char" style="animation-delay: 0.4s;">c</span>
+  <span class="char" style="animation-delay: 0.5s;">e</span>
+  <span class="char" style="animation-delay: 0.6s;">s</span>
+  <span class="char" style="animation-delay: 0.7s;">s</span>
+  <span style="margin-left: 20px;"></span>
+  <span class="char" style="animation-delay: 0.9s;">I</span>
+  <span class="char" style="animation-delay: 1.0s;">c</span>
+  <span class="char" style="animation-delay: 1.1s;">e</span>
+</div>
+
+<script>
+  function createHeart() {
+    const heart = document.createElement('div');
+    heart.classList.add('heart');
+    heart.innerHTML = '❤️';
+    heart.style.left = Math.random() * 100 + 'vw';
+    heart.style.animationDuration = Math.random() * 2 + 3 + 's'; // Randomize fall speed
+    heart.style.fontSize = Math.random() * 15 + 20 + 'px'; // Randomize size
+    heart.style.opacity = Math.random() * 0.7 + 0.3; // Randomize opacity
+    document.body.appendChild(heart);
+
+    // Remove heart after it falls out of view
+    setTimeout(() => {
+      heart.remove();
+    }, parseFloat(heart.style.animationDuration) * 1000);
+  }
+
+  setInterval(createHeart, 200); // Create a new heart every 200 milliseconds
+</script>
+
+</body>
+</html>
